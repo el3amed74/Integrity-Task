@@ -16,34 +16,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(1)->create();
+        $user = User::factory()->create();
+        $token = $user->createToken('api-token')->plainTextToken;
 
         // Create 10 products
-        Product::factory(10)->create();
+        // Product::factory(10)->create();
 
         // Create 5 orders with items
-        Order::factory(5)->create()->each(function ($order) {
-            // Attach 2–4 random products to each order
-            $products = Product::inRandomOrder()->take(rand(2, 4))->get();
+        // Order::factory(5)->create()->each(function ($order) {
+        //     // Attach 2–4 random products to each order
+        //     $products = Product::inRandomOrder()->take(rand(2, 4))->get();
 
-            $total = 0;
+        //     $total = 0;
 
-            foreach ($products as $product) {
-                $qty = rand(1, 3);
-                $subtotal = $product->price * $qty;
+        //     foreach ($products as $product) {
+        //         $qty = rand(1, 3);
+        //         $subtotal = $product->price * $qty;
 
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $product->id,
-                    'quantity' => $qty,
-                    'unit_price' => $product->price,
-                    'subtotal' => $subtotal,
-                ]);
+        //         OrderItem::create([
+        //             'order_id' => $order->id,
+        //             'product_id' => $product->id,
+        //             'quantity' => $qty,
+        //             'unit_price' => $product->price,
+        //             'subtotal' => $subtotal,
+        //         ]);
 
-                $total += $subtotal;
-            }
+        //         $total += $subtotal;
+        //     }
 
-            $order->update(['total' => $total]);
-        });
+        //     $order->update(['total' => $total]);
+        // });
     }
 }
