@@ -65,4 +65,6 @@ curl -X POST http://127.0.0.1:8000/api/products \
   "stock": 10
 }'
 
-
+```
+# What missing :
+1- testing 
