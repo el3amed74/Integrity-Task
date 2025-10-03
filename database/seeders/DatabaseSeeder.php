@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $user = User::factory()->create();
-        $token = $user->createToken('api-token')->plainTextToken;
+        // $token = $user->createToken('api-token')->plainTextToken;
 
         // Create 10 products
         // Product::factory(10)->create();
